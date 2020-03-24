@@ -1,15 +1,13 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
+project(libsoda VERSION 0.1.0 LANGUAGES CXX)
 
-set(CMAKE_BUILD_TYPE Release)
-add_definitions( -std=c++11 ) 
+add_definitions(-std=c++11) 
 
-add_library( lsoda ${CMAKE_CURRENT_SOURCE_DIR}/LSODA.cpp)
+add_library(lsoda ${CMAKE_CURRENT_SOURCE_DIR}/LSODA.cpp)
 
-if( "${CMAKE_BUILD_TYPE}" STREQUAL "Release" )
+if("${CMAKE_BUILD_TYPE}" STREQUAL "Release" )
     message( STATUS "Building for release" )
     set_target_properties( lsoda PROPERTIES COMPILE_FLAGS "-Werror -Wall")
-else()
-    message( STATUS "Building for DEBUG mode" )
 endif()
 
 find_package(Threads REQUIRED)
